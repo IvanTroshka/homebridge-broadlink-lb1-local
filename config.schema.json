@@ -1,0 +1,91 @@
+{
+  "pluginAlias": "BroadlinkLB1Local",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "BroadLink LB1 Local"
+      },
+      "discovery": {
+        "title": "Automatic Discovery",
+        "type": "boolean",
+        "default": true
+      },
+      "discoveryTimeout": {
+        "title": "Discovery Timeout",
+        "type": "number",
+        "default": 5,
+        "minimum": 1
+      },
+      "pollInterval": {
+        "title": "State Poll Interval",
+        "type": "number",
+        "default": 10,
+        "minimum": 1
+      },
+      "keepAliveInterval": {
+        "title": "Watchdog Keepalive Interval",
+        "type": "number",
+        "default": 90,
+        "minimum": 0
+      },
+      "commandTimeout": {
+        "title": "UDP Command Timeout",
+        "type": "number",
+        "default": 4,
+        "minimum": 1
+      },
+      "retries": {
+        "title": "UDP Retries",
+        "type": "integer",
+        "default": 2,
+        "minimum": 0
+      },
+      "colorDebounceMs": {
+        "title": "Color Debounce",
+        "type": "integer",
+        "default": 100,
+        "minimum": 10
+      },
+      "devices": {
+        "title": "Manual Devices",
+        "type": "array",
+        "default": [],
+        "items": {
+          "type": "object",
+          "required": ["host", "mac"],
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "host": {
+              "title": "IP Address or Hostname",
+              "type": "string"
+            },
+            "port": {
+              "title": "UDP Port",
+              "type": "integer",
+              "default": 80,
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "mac": {
+              "title": "MAC Address",
+              "type": "string"
+            },
+            "devtype": {
+              "title": "BroadLink Device Type",
+              "type": "integer",
+              "default": 24776
+            }
+          }
+        }
+      }
+    }
+  }
+}

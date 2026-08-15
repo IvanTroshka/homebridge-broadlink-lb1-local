@@ -1,0 +1,54 @@
+{
+  "name": "homebridge-broadlink-lb1-local",
+  "displayName": "BroadLink LB1 Local",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Local LAN Homebridge platform plugin for BroadLink LB1 smart bulbs.",
+  "author": "Ivan Troshka",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivantroshka/homebridge-broadlink-lb1-local.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ivantroshka/homebridge-broadlink-lb1-local/issues"
+  },
+  "homepage": "https://github.com/ivantroshka/homebridge-broadlink-lb1-local#readme",
+  "files": [
+    "dist/src",
+    "scripts",
+    "config.schema.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "broadlink",
+    "lb1",
+    "homekit"
+  ],
+  "main": "dist/src/index.js",
+  "engines": {
+    "node": "^22.10.0 || ^24.0.0",
+    "homebridge": "^1.11.0 || ^2.0.0"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint . --max-warnings=0",
+    "prepare": "rimraf dist && tsc",
+    "prepublishOnly": "npm run lint && npm test",
+    "test": "rimraf dist && tsc && node --test dist/test/*.test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/node": "^24.2.1",
+    "eslint": "^9.33.0",
+    "homebridge": "^1.11.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0"
+  }
+}
