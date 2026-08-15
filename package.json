@@ -1,7 +1,7 @@
 {
   "name": "homebridge-broadlink-lb1-local",
   "displayName": "BroadLink LB1 Local",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Local LAN Homebridge platform plugin for BroadLink LB1 smart bulbs.",
   "author": "Ivan Troshka",
@@ -20,10 +20,12 @@
     "scripts",
     "config.schema.json",
     "README.md",
+    "README.ru.md",
     "LICENSE"
   ],
   "keywords": [
     "homebridge-plugin",
+    "supports-hap",
     "homebridge",
     "broadlink",
     "lb1",
@@ -31,7 +33,7 @@
   ],
   "main": "dist/src/index.js",
   "engines": {
-    "node": "^22.10.0 || ^24.0.0",
+    "node": "^22 || ^24",
     "homebridge": "^1.11.0 || ^2.0.0"
   },
   "scripts": {

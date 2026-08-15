@@ -45,7 +45,7 @@ Packaging may vary between sellers. The definitive compatibility check is discov
 
 ## Installation
 
-After the package is published to npm, install it from the Homebridge UI by searching for:
+Install it from the Homebridge UI by searching for:
 
 ```text
 homebridge-broadlink-lb1-local
