@@ -16,6 +16,7 @@
   "homepage": "https://github.com/ivantroshka/homebridge-broadlink-lb1-local#readme",
   "files": [
     "dist/src",
+    "docs/assets",
     "scripts",
     "config.schema.json",
     "README.md",

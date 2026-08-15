@@ -8,6 +8,34 @@ The plugin does not use BroadLink Cloud, Magic Home, account credentials, or Pyt
 
 The first supported device type is BroadLink LB1 product ID `0x60C8`.
 
+## Known Compatible Lamp
+
+![LB1-style smart LED bulb and package](docs/assets/lb1-style-smart-led-bulb.png)
+
+This plugin was built and physically tested with a BroadLink LB1-style Wi-Fi smart LED bulb sold as a generic `LED Light Bulb` / `Smart LED Bulb` kit with E27 screw base, frosted A60 bulb shape, RGB + white support, and blue/white retail packaging.
+
+The known-compatible packaging and bulb appearance are:
+
+- cream/white box front with bright cyan-blue side and top panels;
+- front text similar to `LED Light Bulb` with a Wi-Fi mark;
+- three circular front icons for living lighting, grouping and timing;
+- pale bulb silhouette printed on the front;
+- vertical energy label graphic on the blue side panel;
+- white A60 bulb body with frosted dome;
+- metallic E27 screw base with a distinctive green plastic ring/cap at the tip.
+
+The tested device identifies on the BroadLink LAN protocol as:
+
+- Device class: `lb1`
+- Model: `LB1`
+- Manufacturer: `Broadlink`
+- Product ID / devtype: `0x60C8`
+- Control protocol: local BroadLink UDP on port `80`
+
+Branding and box art vary by seller, so compatibility should be confirmed by discovery showing product ID `0x60C8` and device class `lb1`.
+
+The image above is an original generated documentation render based on the known-compatible product appearance. It preserves the important visual identifiers but avoids copying vendor photo artifacts and real app-store trademarks.
+
 ## What This Plugin Exposes
 
 - HomeKit `Lightbulb`
