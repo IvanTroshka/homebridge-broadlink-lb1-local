@@ -6,7 +6,7 @@ Local-only Homebridge plugin for BroadLink LB1 smart bulbs.
 
 It controls compatible bulbs directly over the local network using the BroadLink UDP protocol. Normal operation does **not** require BroadLink Cloud, Magic Home, an account, or Python.
 
-> Python is only used by the optional helper scripts for initial Wi-Fi provisioning and LAN unlock.
+> Python is used only by the optional helper scripts for initial Wi-Fi provisioning and LAN unlock.
 
 ## Compatibility
 
@@ -27,6 +27,8 @@ Confirmed device identification:
 
 Packaging may vary between sellers. The definitive compatibility check is discovery reporting **device class `lb1` and devtype `0x60C8`**.
 
+Other BroadLink bulb revisions are currently unverified and should not be considered supported until confirmed on real hardware.
+
 ## Features
 
 - HomeKit `Lightbulb` accessory
@@ -45,7 +47,7 @@ Packaging may vary between sellers. The definitive compatibility check is discov
 
 ## Installation
 
-Install it from the Homebridge UI by searching for:
+Install the plugin from the Homebridge UI by searching for:
 
 ```text
 homebridge-broadlink-lb1-local
@@ -59,13 +61,26 @@ npm install -g homebridge-broadlink-lb1-local
 
 Then restart Homebridge.
 
-## Prepare a Bulb
+## Prepare the Bulb for Local Control
 
 The bulb must be connected to your Wi-Fi and left LAN-unlocked before Homebridge can control it.
 
-The helper scripts in `scripts/` use [`python-broadlink`](https://github.com/mjg59/python-broadlink) only for the initial preparation process.
+If your bulb is already connected to Wi-Fi and reports `Locked: False`, you can skip this section and continue with [Homebridge Configuration](#homebridge-configuration).
 
-### 1. Install helper dependencies
+The helper scripts in `scripts/` use [`python-broadlink`](https://github.com/mjg59/python-broadlink) only for the initial preparation process. They are not used by Homebridge afterwards.
+
+### 1. Get the preparation scripts
+
+Clone this repository:
+
+```bash
+git clone https://github.com/IvanTroshka/homebridge-broadlink-lb1-local.git
+cd homebridge-broadlink-lb1-local
+```
+
+### 2. Install helper dependencies
+
+Create a temporary Python virtual environment:
 
 ```bash
 python3 -m venv .venv
@@ -73,7 +88,7 @@ python3 -m venv .venv
 pip install -r scripts/requirements.txt
 ```
 
-### 2. Put the bulb into setup mode
+### 3. Put the bulb into setup mode
 
 Factory-reset the bulb and put it into its Wi-Fi setup state.
 
@@ -83,7 +98,7 @@ If the bulb exposes a temporary setup Wi-Fi access point, connect the computer r
 
 Avoid adding the bulb back to old third-party applications if your goal is direct LAN control. The tested bulb was previously provisioned by an old Magic Home application in a LAN-locked state.
 
-### 3. Provision Wi-Fi
+### 4. Provision Wi-Fi
 
 Run:
 
@@ -107,13 +122,13 @@ python scripts/setup_bulb.py "Your Wi-Fi SSID" --security wpa1/2
 
 After successful provisioning, the bulb should leave setup mode and join your normal Wi-Fi network.
 
-### 4. Find the bulb IP address
+### 5. Find the bulb IP address
 
 Find the bulb in your router/DHCP leases or with your preferred LAN scanner.
 
 The Homebridge accessory identity is based on the bulb MAC address, not its IP address, so later DHCP address changes do not create duplicate accessories.
 
-### 5. Unlock local LAN control
+### 6. Unlock local LAN control
 
 Run:
 
@@ -223,45 +238,8 @@ HomeKit uses mired values while the LB1 protocol uses Kelvin. The plugin perform
 
 The current implementation clamps outgoing color temperature to `2700K..6500K`.
 
-## Development
-
-Use Node.js 22 LTS for development and publishing. Node.js 24 is also supported by Homebridge, but Node.js 26 is not supported by Homebridge at the time of this release.
-
-If you use `nvm`:
-
-```bash
-nvm install
-nvm use
-```
-
-```bash
-npm install
-npm run build
-npm run lint
-npm test
-```
-
-For local Homebridge development:
-
-```bash
-npm link
-homebridge -D
-```
-
 ## Credits
 
 The optional setup helpers use [`python-broadlink`](https://github.com/mjg59/python-broadlink), an MIT-licensed project for local BroadLink device control.
 
 The Homebridge plugin itself communicates with the bulb directly from Node.js/TypeScript and does not require `python-broadlink` at runtime.
-
-## Tested Hardware
-
-Current physical validation:
-
-```text
-BroadLink LB1
-devtype:  0x60C8
-firmware: 57231
-```
-
-Support for additional BroadLink bulb revisions should be considered unverified until tested on real hardware.
