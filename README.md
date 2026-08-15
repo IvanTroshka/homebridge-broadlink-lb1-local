@@ -225,6 +225,15 @@ The current implementation clamps outgoing color temperature to `2700K..6500K`.
 
 ## Development
 
+Use Node.js 22 LTS for development and publishing. Node.js 24 is also supported by Homebridge, but Node.js 26 is not supported by Homebridge at the time of this release.
+
+If you use `nvm`:
+
+```bash
+nvm install
+nvm use
+```
+
 ```bash
 npm install
 npm run build
